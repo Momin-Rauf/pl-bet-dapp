@@ -1,0 +1,30 @@
+/* custom.css */
+/* Custom CSS for Bet App */
+.bet-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Animation keyframes */
+@keyframes bounce-in-left {
+  0% {
+    transform: translateX(-100%);
+  }
+  60% {
+    transform: translateX(25%);
+  }
+  80% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/* Animation class for text */
+.animate-bounce-in-left {
+  animation: bounce-in-left 1.5s ease;
+}
