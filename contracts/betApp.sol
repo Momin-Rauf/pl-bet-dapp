@@ -24,9 +24,17 @@ contract betApp {
         bool active;
     }
 
+    struct User{
+        string username;
+        string email;
+        string firstName;
+        string lastname;
+        uint balance;
+    }
+
     Fixture[] public fixtures;
     Bet[] public bets;
-    mapping(address => uint256) public accounts;
+    mapping(address => User) public users;
 
         function addFixture(
             string memory side1,
@@ -62,11 +70,11 @@ contract betApp {
                 if (result == option && option == 1) {
                     bets[i].balance = ((side1pool / payment) * side2pool) + payment;
                     bets[i].payment = 0;
-                    accounts[bets[i].better] += bets[i].balance;
+                    users[bets[i].better].balance += bets[i].balance;
                 } else if (result == option && option == 2) {
                     bets[i].balance = ((side2pool / payment) * side1pool) + payment;
                     bets[i].payment = 0;
-                    accounts[bets[i].better] += bets[i].balance;
+                    users[bets[i].better].balance += bets[i].balance;
                 }
             }
             fixtures[id].active = false;
@@ -89,13 +97,24 @@ contract betApp {
 
     function withdraw() public payable {
         address payable reciever = payable(msg.sender);
-        if (accounts[msg.sender] > 0) {
-            reciever.transfer(accounts[msg.sender]);
-            accounts[msg.sender] = 0;
+        if (users[msg.sender].balance > 0) {
+            reciever.transfer(users[msg.sender].balance);
+            users[msg.sender].balance = 0;
         }
     }
 
     function getBalance() public view returns (uint256) {
-        return accounts[msg.sender];
+        return users[msg.sender].balance;
+    }
+
+    
+
+    function createUser(string memory username, string memory email, string memory firstName, string memory lastName, uint256 balance) public{
+        User memory user = User(username, email, firstName, lastName, balance);
+        users[msg.sender] = user;
+    } 
+
+    function getUser() public view returns (User memory){
+        return users[msg.sender];
     }
 }

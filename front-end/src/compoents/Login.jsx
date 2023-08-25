@@ -4,16 +4,26 @@ import pl from './pl.png';
 import './custom.css';
 import abi from "./contract/betApp.json";
 import {  useEffect } from "react";
+import { Link } from 'react-scroll';
 import { ethers } from "ethers";
-
+import UserDataForm from './UserDataForm';
 
 const Login = (props) => {
-  
+  const check = (userdata) => {
+    if (userdata.email!=='') {
+      setShowForm(false);
+    }
+    else{
+      setShowForm(true);
+    }
+  }
+  const [showForm,setShowForm] = useState(false);
+  const [filled,setFilled] = useState(false);
   const [connected,setConnected] = useState(false);
   const [account, setAccount] = useState("None");
   
   const connectWallet = async () => {
-    const contractAddress = "0xcb8e92dfa6b033198f6d0b78deccc3f1363b495c";
+    const contractAddress = "0xc02eefee365976fdf3b35f09015ad59e3a3c0ce6";
     const contractABI = abi.abi;
     try {
       const { ethereum } = window;
@@ -40,7 +50,8 @@ const Login = (props) => {
           signer,
           contract,
         });
-  
+        
+      check(contract)
         console.log("Connected successfully.");
       } else {
         alert("Please install Metamask");
@@ -57,7 +68,9 @@ const Login = (props) => {
     <div className="bg-white p-8 rounded shadow-md">
       <h1 className="text-2xl font-semibold mb-4">Login Confirmation</h1>
       <p className="text-gray-600 mb-6">You have successfully logged in.</p>
-      <button  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" onClick={()=>setConnected(false)} >Continue</button>
+
+      <Link to={'userDataForm'} duration={2000} smooth={true}>
+      <button  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded" onClick={()=>{setConnected(false)}} >Continue</button></Link>
     
     </div>
   </div>
@@ -85,9 +98,11 @@ const Login = (props) => {
           <FaEthereum size={25} color={'white'} />
         </button>
       </div>
-      
+      {showForm && <UserDataForm check={check} />}
     </>
   );
 };
 
 export default Login;
+
+
