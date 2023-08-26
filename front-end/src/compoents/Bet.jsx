@@ -8,7 +8,7 @@ const Bet = () => {
     const handleSetBet = () => {
         const inputValue = parseFloat(inputRef.current.value);
         
-        if (inputValue >= 0.3 && inputValue <= 1) {
+        if (inputValue >= 0 && inputValue <= 0.01) {
             setValid(false);
             setBet(inputValue);
             console.log(bet);
@@ -18,9 +18,9 @@ const Bet = () => {
     };
 
     return (
-        <div className="p-6 bg-white rounded-lg shadow-md">
+        <div className="p-6 absolute top-24 w-full bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Place Your Bet</h2>
-            <label className="block text-gray-600 mb-2" htmlFor="">Put your bet between 0.3 to 1 ETH</label>
+            <label className="block text-gray-600 mb-2" htmlFor="">Put your bet between 0 to 0.01 ETH</label>
             <div className="flex">
                 <input
                     ref={inputRef}

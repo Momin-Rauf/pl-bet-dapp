@@ -34,6 +34,11 @@ contract betApp {
 
     Fixture[] public fixtures;
     Bet[] public bets;
+
+    // function getFixture() public view returns (Fixture memory){
+    //         return fixtures;
+    // }
+
     mapping(address => User) public users;
 
         function addFixture(

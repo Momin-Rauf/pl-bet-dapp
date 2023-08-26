@@ -10,7 +10,8 @@ import UserDataForm from './UserDataForm';
 
 const Login = (props) => {
   const check = (userdata) => {
-    if (userdata.email!=='') {
+    if (userdata.email!==undefined) {
+      console.log(userdata.email)
       setShowForm(false);
     }
     else{
@@ -23,7 +24,7 @@ const Login = (props) => {
   const [account, setAccount] = useState("None");
   
   const connectWallet = async () => {
-    const contractAddress = "0xc02eefee365976fdf3b35f09015ad59e3a3c0ce6";
+    const contractAddress = "0xf09557d2a602d2148fd04ed37b09d64523885baf";
     const contractABI = abi.abi;
     try {
       const { ethereum } = window;
