@@ -20,7 +20,7 @@ const Bet = (props) => {
               const placebet = props.optionID;
               const InputValue = inputValue.toString();
               const amount = new ethers.utils.parseEther("0.01");
-              const PlaceBetEtherium = await contract.placeBet(placebet.id,placebet.option,amount);
+              const PlaceBetEtherium = await contract.placeBet(placebet.id,placebet.option,amount,{ gasLimit: 200000 });
               
               console.log("done")
         } else {

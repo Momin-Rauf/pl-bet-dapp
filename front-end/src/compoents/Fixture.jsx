@@ -22,7 +22,7 @@ const Fixture = (props) => {
     const {contract} = state;
     const fixtures1 = [];
     
-    while(index<=2){
+    while(index<=3){
       
       const fixtureData = await contract.fixtures(index);
       fixtures1.push({

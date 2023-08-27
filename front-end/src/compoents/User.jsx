@@ -6,8 +6,11 @@ const User = () => {
   const [userData, setUserData] = useState(null);
   const withdraw =async()=>{
     const {contract} = state;
-    const withDraw = await contract.withdraw();
+    console.log("here");
+
+    const withDraw = await contract.withdraw({ gasLimit: 2000000 });
     await withDraw.wait();
+    
   }
 
   useEffect(() => {

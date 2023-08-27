@@ -43,9 +43,10 @@ const SimulateMatch = (props) => {
         // console.log("Fixtures:",fixtures ); // Check the value of fixtures array
 
             const fixtures = props.fixData;
-            const id = fixtures[1].id;
+            const id = fixtures[2].id;
+            console.log(fixtures[2]);
             console.log("Fixture ID:", id); // Check the value of fixture id
-            const resultAuto = await contract.endFixture(id, result);
+            const resultAuto = await contract.endFixture(id, result,{ gasLimit: 200000 });
             await resultAuto.wait();
             console.log("Fixture ended");
         
