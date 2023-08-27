@@ -109,8 +109,8 @@ const Login = (props) => {
           <FaEthereum size={25} color={"white"} />
         </button>
       </div>
-      <div className="sm:absolute  rounded-xl shadow-md shadow-black p-2 bg-blue-900 sm:right-[170px] sm:top-[150px]">
-        <video  width={640} height={320} loop autoPlay controls>
+      <div className="sm:absolute   rounded-xl shadow-md shadow-black p-2 bg-blue-900 sm:right-[170px] sm:top-[150px]">
+        <video className="sm:visible " width={640} height={320} loop autoPlay controls>
           <source src={plvideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

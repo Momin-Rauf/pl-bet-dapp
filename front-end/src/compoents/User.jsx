@@ -27,7 +27,7 @@ const User = () => {
   }
   const balanceInEther = userData.balance / 10 ** 18;
   return (
-    <div className='absolute flex flex-col gap-6 left-96 top-36 w-72 text-white ' >
+    <div className='flex flex-col gap-6  max-w-sm text-white ' >
       <h2  className='font-bold flex felx-col justify-center items-center bg-blue-900 text-xl rounded-md shadow-md shadow-black text-center mb-4 ' ><BiUser size={50}  /><p>User Data</p></h2>
       <p className='bg-blue-900 p-2 text-lg font-semibold rounded-md shadow-md shadow-black' >Username: {userData.username}</p>
       <p className='bg-blue-900 p-2 text-lg font-semibold rounded-md shadow-md shadow-black' >Email: {userData.email}</p>
