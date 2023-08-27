@@ -1,25 +1,48 @@
-import React from 'react';
-
-import { Navigate,useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import Lion from './Lion.png'
+import React from "react";
+import {BiUser} from 'react-icons/bi';
+import {FaDice} from 'react-icons/fa';
+import { Navigate, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import Lion from "./Lion.png";
 const Navbar = (props) => {
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate(); 
+  return (
+    <>
+      <div
+        className="h-[60px] shadow-md z-10 shadow-black flex flex-row justify-between p-3 font-semibold w-full text-center   text-white fixed "
+        style={{
+          backgroundImage: "linear-gradient(to left, #007bff, #00008b)",
+        }}
+      >
+        <Link to={'/'}  >
+        <p className="flex text-[25px] gap-2 cursor-pointer flex-row">
+          D-Bet <span className="relative top-[.80px]" >< FaDice size={30} /></span>
+        </p>
+        </Link>
+          <div className="  text-[17px] font-normal flex gap-10   flex-row  ">
+          <Link to={"./fixtures"}>
+            <button className="relative top-[5.5px] focus:underline   hover:text-blue-950 ">
+              Fixture
+            </button>
+          </Link>
+          <button className="   focus:underline   hover:text-blue-950   ">
+            History
+          </button>
+          <button className="  focus:underline   hover:text-blue-950 ">
+            About
+          </button>
+          <button
+            className="flex flex-col items-center  focus:bg-blue-900 border-white border-[.25px] h-10 w-10 rounded-full ml-24  "
+            onClick={() => navigate("/UserProfile")}
+          >
+            <span className="relative top-1" ><BiUser size={30} /></span>
+            
+          </button>
+        </div>
+      </div>
+    </>
+  );
+};
 
-  return (<>
-    <div className='h-20 drop-shadow-2xl z-10 shadow-black flex flex-row justify-between p-3 font-extrabold items-center w-full text-center text-3xl  text-white fixed ' style={{
-      backgroundImage: 'linear-gradient(to left, #007bff, #00008b)',}}><p  className='flex flex-row' >BET APP <img className='w-16' src={Lion} alt="" /></p>
-    <div className='font-serif font-light text-md ' >
-   <Link to={'./fixtures'} > <button className=' rounded-2xl  hover:text-blue-800 focus:bg-blue-950  text-base p-2 '  >Fixture</button></Link>
-    <button className=' rounded-2xl  hover:text-blue-800 focus:bg-blue-950  text-base p-2 m-2' >History</button>
-    <button className=' rounded-2xl  hover:text-blue-800 focus:bg-blue-950  text-base p-2 mr-10' >About</button>
-    <button className='p-2 m-2 rounded-full focus:bg-blue-950  ' onClick={()=>navigate('/UserProfile')} >User</button>
-    </div>
-
-    
-    </div></>
-  )
-}
-
-export default Navbar
+export default Navbar;

@@ -1,24 +1,35 @@
 import React, { useState, useRef } from 'react';
-
-const Bet = () => {
-    const [bet, setBet] = useState(0.0);
+import { useContext } from 'react';
+import { ethers } from 'ethers';
+import { UserContext } from './contextProvider';
+import User from './User';
+const Bet = (props) => {
+    const state = useContext(UserContext);
+    
     const [valid, setValid] = useState(false);
     const inputRef = useRef(null);
-
-    const handleSetBet = () => {
+    console.log(props.optionID);
+    const handleSetBet = async() => {
+        const {contract} = state;
         const inputValue = parseFloat(inputRef.current.value);
         
-        if (inputValue >= 0 && inputValue <= 0.01) {
+        if (inputValue >= 0 && inputValue <= 4) {
             setValid(false);
-            setBet(inputValue);
-            console.log(bet);
+            
+              
+              const placebet = props.optionID;
+              const InputValue = inputValue.toString();
+              const amount = new ethers.utils.parseEther("0.01");
+              const PlaceBetEtherium = await contract.placeBet(placebet.id,placebet.option,amount);
+              
+              console.log("done")
         } else {
             setValid(true);
         }
     };
 
     return (
-        <div className="p-6 absolute top-24 w-full bg-white rounded-lg shadow-md">
+        <div className="p-6  w-full bg-white rounded-lg shadow-md">
             <h2 className="text-2xl font-semibold mb-4">Place Your Bet</h2>
             <label className="block text-gray-600 mb-2" htmlFor="">Put your bet between 0 to 0.01 ETH</label>
             <div className="flex">

@@ -13,6 +13,7 @@ import UserDataForm from './compoents/UserDataForm'
 
 
 const App = () => {
+  const [address,setAddress] = useState('');
   const [state,setState] = useState({
     provider: null,
     signer: null,
@@ -23,21 +24,22 @@ const App = () => {
     console.log("state in App.jsx",state);
   }
   return (
-    
     <ContextProvider value={state} >
-    <div className='bg-blue-200 w-screen h-screen' >
+    <div  className='bg-blue-200  w-screen h-screen' >
       <Navbar/>
     <Routes>
-      <Route path="/" element={<Login stateSetter={stateSetter} />} >
+      <Route path="/" element={<Login setAddress={setAddress} stateSetter={stateSetter} />} >
         
       <Route path='/userDataForm' element={<UserDataForm/>} />
       </Route>
-      <Route path="/fixtures" element={<Fixture />} />
+      <Route path="/fixtures" element={<Fixture address={address}  />} />
       <Route path='/userProfile' element={<User/>}/>
     </Routes>
+      
     </div>
+    <Footer/>
     </ContextProvider>
-
+    
     
   )
 }

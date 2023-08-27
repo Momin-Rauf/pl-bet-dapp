@@ -21,8 +21,7 @@ const UserDataForm = (props) => {
     event.preventDefault();
     const {contract} = state;
     console.log("heelo ",contract);
-     
-    const balance = new ethers.utils.parseEther("0.000001");
+     const balance  = await contract.getBalance();
     const user = await contract.createUser(Name,Email,FirstName,LastName,balance);
     await user.wait();
     const userdata = await state.contract.getUser();
